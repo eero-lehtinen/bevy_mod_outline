@@ -1,5 +1,6 @@
 use std::borrow::Cow;
 
+use bevy::core_pipeline::core_3d::CORE_3D_DEPTH_FORMAT;
 use bevy::ecs::system::lifetimeless::{SQuery, SRes};
 use bevy::ecs::system::SystemParamItem;
 use bevy::pbr::{setup_morph_and_skinning_defs, MeshPipelineKey};
@@ -293,7 +294,7 @@ impl SpecializedMeshPipeline for OutlinePipeline {
                 vertex_defs.push(val.clone());
                 fragment_defs.push(val);
                 targets.push(Some(ColorTargetState {
-                    format: TextureFormat::Rgba16Float,
+                    format: ViewTarget::TEXTURE_FORMAT_HDR,
                     blend: Some(BlendState::REPLACE),
                     write_mask: ColorWrites::ALL,
                 }));
@@ -303,7 +304,7 @@ impl SpecializedMeshPipeline for OutlinePipeline {
             None
         } else {
             Some(DepthStencilState {
-                format: TextureFormat::Depth32Float,
+                format: CORE_3D_DEPTH_FORMAT,
                 depth_write_enabled: true,
                 depth_compare: CompareFunction::Greater,
                 stencil: StencilState::default(),
