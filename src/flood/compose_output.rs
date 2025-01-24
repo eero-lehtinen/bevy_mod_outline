@@ -1,5 +1,7 @@
 use bevy::{
-    core_pipeline::fullscreen_vertex_shader::fullscreen_shader_vertex_state,
+    core_pipeline::{
+        core_3d::CORE_3D_DEPTH_FORMAT, fullscreen_vertex_shader::fullscreen_shader_vertex_state,
+    },
     prelude::*,
     render::{
         extract_component::{ComponentUniforms, DynamicUniformIndex},
@@ -144,7 +146,7 @@ impl ComposeOutputPipeline {
                 }),
                 primitive: PrimitiveState::default(),
                 depth_stencil: Some(DepthStencilState {
-                    format: TextureFormat::Depth32Float,
+                    format: CORE_3D_DEPTH_FORMAT,
                     depth_write_enabled: true,
                     depth_compare: CompareFunction::Greater,
                     stencil: StencilState::default(),

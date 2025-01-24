@@ -11,6 +11,7 @@ use bevy::{
         },
         renderer::{RenderContext, RenderDevice, RenderQueue},
         texture::CachedTexture,
+        view::ViewTarget,
     },
 };
 use wgpu_types::{
@@ -65,7 +66,7 @@ impl FromWorld for JumpFloodPipeline {
                         shader_defs: vec![],
                         entry_point: "fragment".into(),
                         targets: vec![Some(ColorTargetState {
-                            format: TextureFormat::Rgba16Float,
+                            format: ViewTarget::TEXTURE_FORMAT_HDR,
                             blend: None,
                             write_mask: ColorWrites::ALL,
                         })],

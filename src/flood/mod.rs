@@ -4,6 +4,7 @@ use bevy::render::extract_component::UniformComponentPlugin;
 use bevy::render::render_phase::{
     sort_phase_system, AddRenderCommand, DrawFunctions, SortedRenderPhasePlugin,
 };
+use bevy::render::view::ViewTarget;
 use bevy::{
     prelude::*,
     render::{
@@ -93,7 +94,7 @@ pub fn prepare_flood_textures(
             mip_level_count: 1,
             sample_count: 1,
             dimension: TextureDimension::D2,
-            format: TextureFormat::Rgba16Float,
+            format: ViewTarget::TEXTURE_FORMAT_HDR,
             usage: TextureUsages::TEXTURE_BINDING | TextureUsages::RENDER_ATTACHMENT,
             view_formats: &[],
         };
